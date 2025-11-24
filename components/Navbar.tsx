@@ -17,7 +17,7 @@ import { ModeToggle } from "./ModeToggle";
 export default function Navbar() {
   return (
     <nav className="p-4 flex items-center justify-between">
-      <SidebarTrigger />
+      <SidebarTrigger variant={'outline'} />
 
       <div className="flex items-center gap-4">
         <Link href={"/"}>Dashboard</Link>

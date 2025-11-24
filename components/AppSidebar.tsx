@@ -11,6 +11,7 @@ import {
   ChevronUp,
   Plus,
   Projector,
+  ChevronDown,
 } from "lucide-react";
 import {
   Sidebar,
@@ -26,6 +27,9 @@ import {
   SidebarMenuItem,
   useSidebar,
   SidebarGroupAction,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
 } from "@/components/ui/sidebar";
 
 import {
@@ -37,7 +41,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 const items = [
   {
@@ -75,20 +86,18 @@ export default function AppSidebar() {
       <SidebarHeader className="mt-2">
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href="/" passHref>
-              <SidebarMenuButton
-                className={`flex items-center w-full ${
-                  !open ? "justify-center" : ""
-                }`}
-              >
+            <Link
+              href="/"
+              passHref
+            >
+              <SidebarMenuButton className="group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:pl-1!">
                 <Image
                   src={"/logo.jpg"}
                   alt="logo"
                   width={24} // Slightly larger for better visibility in icon mode
                   height={24}
-                  className={`rounded-full object-cover ${!open ? "ml-2" : ""}`} // flex-shrink-0 is important
+                  className={`rounded-lg object-cover`} // flex-shrink-0 is important
                 />
-
                 <span className="overflow-hidden transition-all whitespace-nowrap">
                   Dango Devy
                 </span>
@@ -128,8 +137,8 @@ export default function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href='#'>
-                    <Projector/>
+                  <Link href="#">
+                    <Projector />
                     See All Projects
                   </Link>
                 </SidebarMenuButton>
@@ -137,15 +146,86 @@ export default function AppSidebar() {
 
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href='#'>
-                    <Plus/>
+                  <Link href="#">
+                    <Plus />
                     Add a Project
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
+        </SidebarGroup>
 
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger className="hover:bg-accent">
+                Collapsible
+                <ChevronDown className="size-5! ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <Link href="#">
+                        <Projector />
+                        See All Projects
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <Link href="#">
+                        <Plus />
+                        Add a Project
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Nested Items</SidebarGroupLabel>
+          <SidebarGroupAction className="size-6 top-3">
+            <Plus /> <span className="sr-only">Add Project</span>
+          </SidebarGroupAction>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href="#">
+                    <Projector />
+                    See All Projects
+                  </Link>
+                </SidebarMenuButton>
+
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton>Add Project</SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton>Add Category</SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href="#">
+                    <Plus />
+                    Add a Project
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
