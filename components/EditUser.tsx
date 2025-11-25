@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SheetContent,
   SheetDescription,
@@ -6,30 +8,156 @@ import {
 } from "@/components/ui/sheet";
 
 import { Button } from "./ui/button";
-
 import { Edit } from "lucide-react";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   username: z
     .string()
     .min(3, { message: "Username must be greather than 3 characters" })
     .max(50),
-  email: z.email({message: 'Invalid email address'}),
+  email: z.email({ message: "Invalid email address" }),
   phone: z.string().min(10).max(15),
   location: z.string().min(2),
-  role: z.enum(['admin', 'user'])
+  role: z.enum(["admin", "user"]),
 });
 
 export default function EditUser() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "John Doe",
+      email: "john.doe@gmail.com",
+      phone: "+1 234 5678",
+      location: "New York, NY",
+      role: "admin",
+    },
+  });
+
+  const onSubmit = (...rest) => {
+    console.log("Inside on submit!");
+    console.log(rest);
+  };
+
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Are you absolutely sure?</SheetTitle>
+        <SheetTitle className="mb-8">Edit User</SheetTitle>
         <SheetDescription>
-          This action cannot be undone. This will permanently delete your
-          account and remove your data from our servers.
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="shadcn" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      This is your public display name.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="shadcn" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      This is your email <address className=""></address>
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>phone</FormLabel>
+                    <FormControl>
+                      <Input placeholder="shadcn" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      This is your phone number.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Location</FormLabel>
+                    <FormControl>
+                      <Input placeholder="shadcn" {...field} />
+                    </FormControl>
+                    <FormDescription>This is your location.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <FormControl>
+                      <Select>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue placeholder="Role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="user">User</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
         </SheetDescription>
       </SheetHeader>
     </SheetContent>

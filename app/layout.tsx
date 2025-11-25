@@ -35,7 +35,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
             <AppSidebar />
-            <main className="w-full">
+            <main className="w-full xl:pr-2">
               <Navbar />
               <div className="px-4 pb-4">{children}</div>
             </main>

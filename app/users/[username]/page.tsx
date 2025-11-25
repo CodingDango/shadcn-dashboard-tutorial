@@ -23,6 +23,9 @@ import { Progress } from "@/components/ui/progress";
 import { BadgeCheck, Candy, Edit, Gift, TreePalm } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EditUser from "@/components/EditUser";
+import { Avatar } from "@radix-ui/react-avatar";
+import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AppLineChart } from "@/components/AppLineChart";
 
 export default function SingleUserPage() {
   return (
@@ -43,9 +46,9 @@ export default function SingleUserPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="w-full mt-4 flex flex-col xl:flex-row gap-6">
-        <div className="xl:w-1/3 space-y-6">
-          <Card>
+      <div className="w-full mt-4 flex flex-col xl:grid xl:grid-cols-[33%_66%] gap-6">
+        
+          <Card className="col-start-1 row-start-1">
             <CardHeader>
               <CardTitle>User Badges</CardTitle>
             </CardHeader>
@@ -113,7 +116,7 @@ export default function SingleUserPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="col-start-1 row-start-2">
             <CardHeader className="flex justify-between items-start">
               <CardTitle>User Information</CardTitle>
               <Sheet>
@@ -122,7 +125,7 @@ export default function SingleUserPage() {
                     <Edit />
                   </Button>
                 </SheetTrigger>
-                <EditUser/>
+                <EditUser />
               </Sheet>
             </CardHeader>
             <CardContent className="flex flex-col gap-8">
@@ -159,14 +162,39 @@ export default function SingleUserPage() {
               </p>
             </CardContent>
           </Card>
-          <CardList title="Recent Transactions" />
-        </div>
+          
+          <div className="col-start-1 row-start-3">
+            <CardList title="Recent Transactions" />
+          </div>
+        
 
-        <div className="xl:w-2/3 space-y-6">
-          <div className="bg-primary-foreground p-4 rounded-lg">User</div>
-          <div className="bg-primary-foreground p-4 rounded-lg">Chart</div>
+        
+          <Card className="col-start-2 row-start-1 gap-1">
+            <CardHeader>
+              <CardTitle className="flex gap-4 items-center">
+                <Avatar>
+                  <AvatarImage
+                    src="https://avatars.githubusercontent.com/u/182408519"
+                    className="size-12 rounded-full"
+                  />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <span>John Doe</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground text-sm">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Cumque, optio veniam atque accusamus repellendus tempora rerum
+                quaerat ipsam sint nisi harum, architecto fuga! Excepturi
+                tempore consequatur ea minima neque quod quasi assumenda quo
+                natus aliquid.  
+              </p>
+            </CardContent>
+          </Card>
+
+          <AppLineChart/>
         </div>
       </div>
-    </div>
   );
 }
