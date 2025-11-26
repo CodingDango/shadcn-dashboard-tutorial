@@ -17,7 +17,7 @@ import { ModeToggle } from "./ModeToggle";
 export default function Navbar() {
   return (
     <nav className="p-4 flex items-center justify-between">
-      <SidebarTrigger variant={'outline'} />
+      <SidebarTrigger variant={"outline"} />
 
       <div className="flex items-center gap-4">
         <Link href={"/"}>Dashboard</Link>
@@ -41,10 +41,13 @@ export default function Navbar() {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <User className="mr-1" />
-              Profile
+
+            <DropdownMenuItem asChild>
+              <Link href={"/users/1"} className="cursor-pointer flex">
+                <User className="mr-1" /> Profile
+              </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem>
               <Settings className="mr-1" />
               Settings

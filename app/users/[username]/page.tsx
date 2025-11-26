@@ -46,7 +46,7 @@ export default function SingleUserPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="w-full mt-4 flex flex-col xl:grid xl:grid-cols-[33%_66%] gap-6">
+      <div className="w-full mt-4 flex flex-col xl:grid xl:grid-cols-[33%_66%] xl:grid-rows-[auto_395px_auto] gap-6">
         
           <Card className="col-start-1 row-start-1">
             <CardHeader>
@@ -193,7 +193,9 @@ export default function SingleUserPage() {
             </CardContent>
           </Card>
 
-          <AppLineChart/>
+          <div className="col-start-2 row-start-2 row-end-3">
+            <AppLineChart/>
+          </div>
         </div>
       </div>
   );

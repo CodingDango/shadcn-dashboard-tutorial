@@ -44,11 +44,11 @@ const chartConfig = {
 
 export function AppAreaChart() {
   return (
-    <Card>
+    <Card className="w-full h-full">
       <CardHeader>
-        <CardTitle>Area Chart - Gradient</CardTitle>
+        <CardTitle>Total Visitors</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing total visitors on different platforms for the last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>

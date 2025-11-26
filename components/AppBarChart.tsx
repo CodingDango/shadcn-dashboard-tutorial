@@ -31,7 +31,7 @@ export default function AppBarChart() {
     <Card className="h-full w-full">
       <CardHeader>
         <CardTitle>Total Revenue</CardTitle>
-        <CardDescription>Showing visitors device for the last 6 months</CardDescription>
+        <CardDescription>Showing total revenue on different platforms for the last 6 months</CardDescription>
       </CardHeader>
       <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
         <BarChart accessibilityLayer data={chartData}>

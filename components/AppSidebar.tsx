@@ -12,6 +12,8 @@ import {
   Plus,
   Projector,
   ChevronDown,
+  User,
+  Wallet
 } from "lucide-react";
 import {
   Sidebar,
@@ -57,24 +59,14 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Payments",
+    url: "/payments",
+    icon: Wallet,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Profile",
+    url: "/users/1",
+    icon: User,
   },
 ];
 
