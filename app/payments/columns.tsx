@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpDown, Table } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
 
 import { ColumnDef } from "@tanstack/react-table";
@@ -65,7 +65,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.getValue("status");
+      const status = row.getValue("status") as string;
 
       return (
         <Badge
