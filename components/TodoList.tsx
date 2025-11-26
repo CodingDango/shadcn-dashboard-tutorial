@@ -48,6 +48,7 @@ export default function TodoList() {
           </PopoverTrigger>
           <PopoverContent className="p-0 w-auto border-0 bg-none">
             <Calendar
+              required
               mode="single"
               selected={date}
               onSelect={setDate}
