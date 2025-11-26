@@ -56,10 +56,7 @@ export default function EditUser() {
     },
   });
 
-  const onSubmit = (...rest) => {
-    console.log("Inside on submit!");
-    console.log(rest);
-  };
+  const onSubmit = () => {};
 
   return (
     <SheetContent>
